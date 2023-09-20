@@ -1,0 +1,815 @@
+.todoHeaderContentWrapper {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  animation: fadeIn 1s linear;
+}
+
+.todoBodyContentWrapper {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  animation: fadeIn 1s linear;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.todoSingleContentWrapper {
+  flex: 1;
+}
+
+.insideBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btnText {
+  color: var(--base-white, #fff);
+  font-family: "roobertSemiBold", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.todosItemWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.todosItem {
+  display: flex;
+  padding: 2px 8px;
+  align-items: center;
+  border-radius: 16px;
+  background: #0105191f;
+  color: var(--base-white, #fff);
+  text-align: center;
+  font-family: "roobertSemiBold", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.plusIcon {
+  display: flex;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.plusIcon:hover {
+  transition: all 0.3s ease;
+  background: #c1c3d124;
+}
+
+/* TODO Card CSS Start here */
+
+.todoCardWrapper {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 24px;
+}
+
+.todoCard {
+  width: 100%;
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-50, #f0f1f3);
+  background: var(--base-white, #fff);
+  margin-bottom: 8px;
+}
+
+.todoMoreOptionWrapper {
+  position: relative;
+}
+
+.moreOption {
+  width: 112px;
+  max-height: 0px;
+  opacity: 0;
+  position: absolute;
+  right: 25px;
+  top: 0;
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-50, #f0f1f3);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03),
+    0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+  z-index: 10000;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.moreOptionVisible {
+  max-height: 500px;
+  opacity: 1;
+  overflow: hidden;
+  transition: all 0.5s linear;
+  background: var(--base-white, #fff);
+}
+
+.cardMoreOptionBtn {
+  display: flex;
+  width: 93px;
+  padding: 4px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  color: var(--gray-900, #2b2f38);
+  font-family: "roobertReg", sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: capitalize;
+  background-color: var(--base-white);
+  transition: all 0.5s ease-in-out;
+}
+
+.cardMoreOptionBtn:hover {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  background: var(--gray-50, #f0f1f3);
+}
+
+.cardMoreDeleteBtnText {
+  color: var(--error-500, #f04438);
+}
+
+.todoMoreOptionBtn {
+  transition: all 0.3s ease-in-out;
+}
+
+.todoMoreOptionBtn:hover {
+  cursor: pointer;
+  border-radius: 4px;
+  background: var(--gray-50, #f0f1f3);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08);
+}
+
+.todoEditIcon {
+  width: 16px;
+  height: 16px;
+  color: #2b40ab;
+}
+
+.cardMoreEditBtnText {
+  color: var(--primary-800) !important;
+}
+
+.todoCardHeader,
+.todoInputHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.todoCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.todoCardItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.todoCardDeleteIconWrapper {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease-in;
+}
+
+.todoCardDeleteIconWrapper:hover {
+  cursor: pointer;
+}
+
+.todoCardItem:hover .todoCardDeleteIconWrapper {
+  width: fit-content;
+  height: fit-content;
+  opacity: 1;
+  transition: all 0.3s ease-in;
+}
+
+.todoTitle {
+  color: var(--gray-900, #2b2f38);
+  font-family: "roobertMedium", sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.todoCardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.time,
+.taskNumber {
+  cursor: pointer;
+  width: fit-content;
+  color: var(--gray-900, #2b2f38);
+  font-family: "roobertMedium", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  border-radius: 50px;
+  padding: 6px 14px;
+  border: 1px solid var(--gray-50, #f0f1f3);
+  background: var(--base-white, #fff);
+}
+
+/* Todo Progress report css */
+
+.todoProgressReport {
+  width: 100%;
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-50, #f0f1f3);
+  background: var(--base-white, #fff);
+  margin-top: 28px;
+}
+
+/* .chartWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  height: 100%;
+} */
+
+/* @media screen and (max-width: 1440px) {
+  .chartWrapper {
+    width: 100%;
+    height: 100%;
+  }
+} */
+
+.OverAllProgress {
+  display: flex;
+  width: 100%;
+  padding: 16px 0px;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--gray-50, #f0f1f3);
+  border-bottom: 1px solid var(--gray-50, #f0f1f3);
+  background: var(--base-white, #fff);
+}
+
+.progressText {
+  color: var(--gray-900, #2b2f38);
+  font-family: "roobertMedium", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.progressPercentage {
+  color: var(--primary-600, #3852db);
+  font-family: "roobertSemiBold", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.tasks {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.taskList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.taskType {
+  display: flex;
+  width: 87px;
+  align-items: center;
+  gap: 8px;
+}
+
+.taskCount {
+  color: var(--gray-600, #475467);
+  font-family: "roobertReg", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+/* TODO Input css start here */
+
+.ThreeDot {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease-out;
+}
+
+.ThreeDot:hover {
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  border-radius: 4px;
+  background: var(--gray-50, #f0f1f3);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08);
+}
+
+.todoInputWrapper {
+  opacity: 1;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  transition: all 0.8s ease;
+  overflow: visible;
+  background: var(--base-white, #fff);
+  border: 1px solid var(--gray-50, #f0f1f3);
+}
+
+.taskNameInputWrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.inputLabel {
+  color: var(--gray-900, #2b2f38);
+  font-family: "roobertMedium", sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+  transition: all 0.3s ease-in;
+}
+
+.editTaskNameicon {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+.todoInputWrapper:hover .editTaskNameicon {
+  opacity: 1;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+}
+
+.todoInputHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.enterTaskText {
+  color: var(--gray-900, #2b2f38);
+  font-family: "roobertMedium", sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.initialInputState {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+.todoInput {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: var(--gray-900, #2b2f38);
+  font-family: "roobertMedium", sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+  background-color: transparent;
+}
+
+.todoInput::placeholder {
+  color: var(--gray-300, #989fad);
+  font-family: "roobertReg", sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.todoInputBody {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subTaskInput {
+  outline: none;
+  border: none;
+  color: var(--gray-900, #2b2f38);
+  font-family: "roobertReg", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  background-color: transparent;
+}
+
+.allSubTaskWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subTask {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.deleteSubTaskIcon {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+.subTask:hover .deleteSubTaskIcon {
+  opacity: 1;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+}
+
+.todoCardFooter {
+  width: 100%;
+}
+
+.addTimeWrapper {
+  width: 100%;
+  position: relative;
+}
+
+.addTime {
+  width: fit-content;
+  display: flex;
+  padding: 6px 14px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+  border-radius: 50px;
+  border: 1px solid var(--gray-50, #f0f1f3);
+  background: var(--base-white, #fff);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.addTime:hover {
+  transition: all 0.3s ease-in-out;
+  border: 1px solid var(--gray-100, #d0d3d9);
+  background: var(--gray-50, #f0f1f3);
+}
+
+.addTimeText {
+  color: var(--gray-600, #5d6679);
+  font-family: "roobertMedium", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.addTaskBtn {
+  display: flex;
+  padding: 8px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  border: 1px solid var(--primary-600, #3852db);
+  background: var(--primary-600, #3852db);
+  text-transform: capitalize;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.addTaskBtn:hover {
+  cursor: pointer;
+  border: 1px solid var(--primary-700, #2b40ab);
+  background: var(--primary-700, #2b40ab);
+  transition: all 0.4s;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.cancelTaskBtn {
+  outline: none;
+  border: none;
+  color: #2b2f38;
+  background-color: #fff;
+  color: var(--gray-600, #5d6679);
+  font-family: "roobertMedium", sans-serif;
+  font-size: 16px;
+  line-height: 20px; /* 200% */
+  cursor: pointer;
+}
+
+.addInputBtnWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+/*  set Time popup css  */
+
+.setTimePopUp {
+  max-width: 100%;
+  max-height: 0;
+  position: absolute;
+  opacity: 0;
+  margin-top: 6px;
+  padding: 0;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-50, #f0f1f3);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 4px 6px -2px rgba(16, 24, 40, 0.03),
+    0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+  overflow: hidden;
+  z-index: 1000000000;
+  transition: all 0.5s linear;
+}
+
+.absolute {
+  max-width: 100%;
+  max-height: 500px;
+  top: 100%;
+  left: 0;
+  opacity: 1;
+  padding: 12px 16px;
+  transition: all 0.5s linear;
+}
+
+.timeSet {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.form,
+.to {
+  width: 100%;
+  color: var(--accent-600, #1fbed9);
+  font-family: "roobertMedium", sans-serif;
+  font-size: 10px;
+  padding: 2px 10px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-align: center;
+  background: var(--accent-50, #e9fafd);
+}
+
+.to {
+  color: var(--success-500, #12b76a);
+  background: var(--success-50, #e7f8f0);
+}
+
+.times {
+  display: flex;
+  gap: 6px;
+}
+
+.hourAndMinWrapper {
+  display: flex;
+  gap: 6px;
+}
+
+.timeStampWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.timeStamp {
+  color: var(--gray-900, #2b2f38);
+  font-family: "roobertMedium", sans-serif;
+  font-size: 10px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--gray-50, #f0f1f3);
+  background: var(--base-white, #fff);
+  cursor: pointer;
+}
+
+.timeStamp:focus {
+  font-size: 15px;
+}
+
+.timeWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.timeType {
+  color: var(--gray-400, #858d9d);
+  font-family: "roobertReg", sans-serif;
+  font-size: 8px;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.hourNumber {
+  width: 40px;
+  padding: 6px 0;
+  text-align: center;
+  color: var(--gray-900, #2b2f38);
+  font-size: 20px;
+  outline: none;
+  line-height: 30px;
+  border-radius: 4px;
+  background: #fff;
+  color: var(--gray-900, #2b2f38);
+  font-family: "roobertSemiBold", sans-serif;
+  border: 1px solid var(--gray-50, #f0f1f3);
+}
+
+.hourNumber:focus {
+  border-radius: 4px;
+  background: var(--gray-50, #f0f1f3);
+  box-shadow: 0px 0px 0px 1.5px rgba(0, 0, 0, 0.1);
+}
+
+.hourNumber::-webkit-outer-spin-button,
+.hourNumber::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hourNumber[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.dotWrapper {
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dotWrapper span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: #000;
+  border-radius: 50%;
+}
+
+.timeBtnWrapper {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+}
+
+.selectedTimePortion {
+  background-color: rgb(228, 227, 227);
+}
+
+.cancelTime {
+  color: var(--gray-600, #5d6679);
+  font-family: "roobertSemiBold", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.setTimeBtn {
+  color: var(--base-white, #fff);
+  font-family: "roobertSemiBold", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  padding: 3.556px 6.222px;
+  justify-content: center;
+  align-items: center;
+  gap: 3.556px;
+  flex: 1 0 0;
+  outline: none;
+  border-radius: 2px;
+  border: 0.444px solid var(--primary-600, #3852db);
+  background: var(--primary-600, #3852db);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.setTimeBtn:hover {
+  cursor: pointer;
+  border: 1px solid var(--primary-700, #2b40ab);
+  background: var(--primary-700, #2b40ab);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.somethingWentWrong {
+  color: red;
+  margin-top: 200px;
+}
+
+.NoTaskMsgContainer {
+  position: absolute;
+  top: 150px;
+}
+
+.NoTaskMsg {
+  width: 324px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.noTaskImage {
+  width: 118px;
+  height: auto;
+}
+
+.NoTaskText {
+  color: var(--gray-900, #2b2f38);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "roobertSemiBold", sans-serif;
+  margin-bottom: 5px;
+}
+
+.noTaskDesc {
+  color: var(--gray-600, #475467);
+  text-align: center;
+  font-family: "roobertReg", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.noAddTaskBtn {
+  display: flex;
+  padding: 10px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--primary-600, #3852db);
+  background: var(--primary-600, #3852db);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.noAddTaskBtn:hover {
+  cursor: pointer;
+}

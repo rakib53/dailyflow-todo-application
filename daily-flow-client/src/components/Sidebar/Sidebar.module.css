@@ -1,0 +1,155 @@
+.navbarWrapper {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 32px 16px 16px;
+  align-self: stretch;
+  border-right: 1px solid var(--gray-200, #eaecf0);
+  background: var(--base-white, #fff);
+}
+
+.NavbarLogoWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.menuContentWrapper {
+  width: 100%;
+}
+
+.NavbarLogo {
+  width: 149px;
+  margin-bottom: 48px;
+}
+
+.navItemsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.navLinks {
+  color: var(--gray-700, #48505e);
+  font-size: 16px;
+  font-family: "roobertSemiBold", sans-serif;
+  line-height: 24px;
+}
+
+.navItems {
+  display: flex;
+  padding: 8px 12px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 6px;
+  text-decoration: none;
+  background: var(--base-white, #fff);
+  transition: all 0.3s cubic-bezier(0.23, 0.41, 0.91, 0.66);
+}
+
+.navItems:hover {
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.39, 0.07, 0.57, 0.89);
+  background: var(--base-background, #101828);
+}
+
+.navItems:hover .navLinks {
+  color: var(--base-white, #fff);
+}
+
+.navItems:hover .icon g path {
+  stroke: white;
+}
+/* Upgrade plan css start here */
+
+.upgradePlanContent {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  width: 188px;
+  animation: fadeUp 1s ease-in-out;
+  /* cubic-bezier(0.13, 0.56, 1, -0.52) */
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateX(-500px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.innerUpgradeWrapper {
+  position: relative;
+  display: flex;
+  padding: 20px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--gray-50, #f9fafb);
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 58px;
+  border: 6px solid var(--gray-200, #eaecf0);
+  position: relative;
+}
+
+.remainDays {
+  color: var(--gray-900, #2b2f38);
+  text-align: center;
+  font-size: 14px;
+  font-family: "roobertMedium", sans-serif;
+  line-height: 20px;
+}
+
+.daysLeft {
+  color: var(--gray-900, #2b2f38);
+  font-size: 14px;
+  font-family: "roobertSemiBold", sans-serif;
+  line-height: 20px;
+  margin-bottom: 4px;
+}
+
+.daysLeftDescription {
+  color: var(--gray-700, #48505e);
+  font-size: 14px;
+  font-family: "roobertReg", sans-serif;
+  line-height: 20px;
+}
+
+.upgradePlanBtn {
+  display: block;
+  margin-top: 16px;
+  color: var(--primary-600, #3852db);
+  text-decoration: none;
+  font-size: 14px;
+  font-family: "roobertSemiBold", sans-serif;
+  line-height: 20px;
+}
+
+.CloseUpgradeBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  margin: 8px;
+  cursor: pointer;
+}
