@@ -8,5 +8,4 @@ const dev = {
     url: process.env.DB_URL,
   },
 };
-
 module.exports = dev;

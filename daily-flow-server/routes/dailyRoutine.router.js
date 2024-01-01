@@ -4,7 +4,6 @@ const {
   deleteASubTask,
   deleteTask,
   updateTaskStatus,
-  updateSubTask,
   updateSubTaskStatus,
   editTask,
 } = require("../controller/dailyRoutine.controller");

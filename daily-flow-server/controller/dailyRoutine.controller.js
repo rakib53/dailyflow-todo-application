@@ -55,6 +55,7 @@ const addTask = async (req, res, next) => {
   }
 };
 
+// Editing a new Task.
 const editTask = async (req, res, next) => {
   try {
     const { taskId, data } = req?.body;

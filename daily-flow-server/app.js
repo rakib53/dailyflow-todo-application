@@ -7,7 +7,6 @@ const TaskRouter = require("./routes/dailyRoutine.router");
 
 // Middlewares
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(cookieParser());
 
@@ -15,7 +14,7 @@ app.use(cookieParser());
 
 app.use("/api", UserRouter);
 
-// Tasks Api
+// // // Tasks Api
 app.use("/api", TaskRouter);
 
 // Error Handling
@@ -23,7 +22,6 @@ app.use((err, req, res, next) => {
   if (err) {
     res.status(err.status).json({ message: "Something went wrong!!" });
   }
-  console.log(err);
 });
 
 module.exports = app;

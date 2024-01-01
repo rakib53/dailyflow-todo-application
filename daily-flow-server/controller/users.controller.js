@@ -1,6 +1,7 @@
 const User = require("../model/users.model");
 const jwt = require("jsonwebtoken");
 
+// sigining json web token
 const signJsonWebToken = (req, res, next) => {
   const userName = req?.body?.userName;
   const email = req?.body?.email;
@@ -34,6 +35,7 @@ const signJsonWebToken = (req, res, next) => {
   }
 };
 
+// verifying json web token
 const verifyJsonWebToken = (req, res, next) => {
   try {
     const userToken = req?.headers?.authorization?.split(" ")[1];
@@ -55,9 +57,7 @@ const verifyJsonWebToken = (req, res, next) => {
   }
 };
 
-//
 // Creating a new User.
-//
 const registration = async (req, res, next) => {
   try {
     const token = req?.token;
@@ -116,9 +116,7 @@ const registration = async (req, res, next) => {
   }
 };
 
-//
 // Login  User
-//
 const loginUser = async (req, res, next) => {
   try {
     // Token from the JWT
@@ -188,12 +186,9 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-//
 // Checking The user is valid or not
-//
 const userInfo = async (req, res, next) => {
   try {
-    console.log("hittted user info routes");
     // user email
     const { email } = req.decoded;
     // Define your search criteria
