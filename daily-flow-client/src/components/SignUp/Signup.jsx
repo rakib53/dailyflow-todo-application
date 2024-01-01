@@ -45,6 +45,14 @@ const Signup = () => {
     }
   };
 
+  const onSuccess = (res) => {
+    console.log("Successfully Login with google", res.profileObj);
+  };
+
+  const onFailure = (res) => {
+    console.log("Google login failed", res);
+  };
+
   useEffect(() => {
     if (!isLoading && registrationResponse?.token) {
       dispatch(setToken(registrationResponse.token));

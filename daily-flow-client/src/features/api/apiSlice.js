@@ -4,7 +4,7 @@ export const apiSlice = createApi({
   reducerPath: "Tasks",
   tagTypes: ["getTasks"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/",
+    baseUrl: "https://daily-flow-server.vercel.app/",
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem("userToken");
       if (token) {
@@ -17,3 +17,6 @@ export const apiSlice = createApi({
   }),
   endpoints: (builder) => ({}),
 });
+
+// https://daily-flow-server.vercel.app/
+// http://localhost:8000/

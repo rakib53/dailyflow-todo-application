@@ -2,35 +2,88 @@ import { apiSlice } from "../api/apiSlice";
 
 export const tasksApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getTask: builder.query({
+      query: ({ userId }) => ({
+        url: `api/getTask/user/${userId}`,
+      }),
+    }),
     addTask: builder.mutation({
       query: (data) => ({
         url: "api/addTask",
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["getTasks"],
+      async onQueryStarted({ userId, ...arg }, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          tasksApi.util.updateQueryData("getTask", { userId }, (draft) => {
+            draft.tasks.push(arg);
+          })
+        );
+        try {
+          const completeFetching = await queryFulfilled;
+        } catch (error) {
+          patchResult.undo();
+        }
+      },
     }),
     editTask: builder.mutation({
-      query: (data) => ({
-        url: "api/editTask",
-        method: "PATCH",
-        body: data,
-      }),
+      query: (data) => {
+        console.log(data);
+        return {
+          url: "api/editTask",
+          method: "PATCH",
+          body: data,
+        };
+      },
       invalidatesTags: ["getTasks"],
-    }),
-    getTask: builder.query({
-      query: ({ userId }) => ({
-        url: `api/getTask/user/${userId}`,
-      }),
-      providesTags: ["getTasks"],
+      // async onQueryStarted({ taskId, data }, { dispatch, queryFulfilled }) {
+      //   const { userId } = data;
+      //   const editTask = dispatch(
+      //     tasksApi.util.updateQueryData("getTask", { userId }, (draft) => {
+      //       const isTasks = draft.tasks.map((task) => {
+      //         if (task?._id === taskId) {
+      //           task = data;
+      //         } else {
+      //           return task;
+      //         }
+      //       });
+      //       console.log(isTasks);
+      //       draft.tasks = isTasks;
+      //     })
+      //   );
+      //   try {
+      //     const editedTask = await queryFulfilled;
+      //   } catch (error) {
+      //     editTask.undo();
+      //   }
+      // },
     }),
     updateTaskStatus: builder.mutation({
-      query: (data) => ({
-        url: `api/updateTaskStatus`,
-        method: "PATCH",
-        body: data,
-      }),
-      invalidatesTags: ["getTasks"],
+      query: (data) => {
+        return {
+          url: `api/updateTaskStatus`,
+          method: "PATCH",
+          body: data,
+        };
+      },
+      async onQueryStarted(
+        { userId, taskId, status },
+        { dispatch, queryFulfilled }
+      ) {
+        const editedTaskStatus = dispatch(
+          tasksApi.util.updateQueryData("getTask", { userId }, (draft) => {
+            const isTasks = draft.tasks.find((task) => {
+              return task?._id === taskId;
+            });
+            isTasks.status = status;
+          })
+        );
+        try {
+          const changesTaskStaus = await queryFulfilled;
+        } catch (error) {
+          editedTaskStatus.undo();
+        }
+      },
     }),
     updateSubTaskStatus: builder.mutation({
       query: (data) => ({
@@ -41,12 +94,29 @@ export const tasksApi = apiSlice.injectEndpoints({
       invalidatesTags: ["getTasks"],
     }),
     deleteTask: builder.mutation({
-      query: (data) => ({
-        url: `api/deleteTask`,
-        method: "DELETE",
-        body: data,
-      }),
-      invalidatesTags: ["getTasks"],
+      query: (data) => {
+        console.log(data);
+        return {
+          url: `api/deleteTask`,
+          method: "DELETE",
+          body: data,
+        };
+      },
+      async onQueryStarted({ userId, taskId }, { dispatch, queryFulfilled }) {
+        const deleteTask = dispatch(
+          tasksApi.util.updateQueryData("getTask", { userId }, (draft) => {
+            const isTasks = draft.tasks.filter((task) => {
+              return task?._id !== taskId;
+            });
+            draft.tasks = isTasks;
+          })
+        );
+        try {
+          const deletedTask = await queryFulfilled;
+        } catch (error) {
+          deleteTask.undo();
+        }
+      },
     }),
     deleteSubTask: builder.mutation({
       query: (data) => ({
@@ -54,21 +124,6 @@ export const tasksApi = apiSlice.injectEndpoints({
         method: "DELETE",
         body: data,
       }),
-      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-        const userId = arg?.userId;
-        const result = dispatch(
-          apiSlice.util.updateQueryData("getTask", userId, (draft) => {
-            console.log("Hello world!");
-          })
-        );
-        try {
-          console.log("ahead of fullfilled query");
-          await queryFulfilled;
-          console.log("query is fullfilled");
-        } catch (error) {
-          console.log(error);
-        }
-      },
       invalidatesTags: ["getTasks"],
     }),
   }),
@@ -83,9 +138,3 @@ export const {
   useDeleteTaskMutation,
   useDeleteSubTaskMutation,
 } = tasksApi;
-// const task = draft.find((task) => task.userId === userId);
-// if (task) {
-//   task.tasks = task.tasks.filter(
-//     (subtask) => subtask?._id !== arg?.subTaskId
-//   );
-// }

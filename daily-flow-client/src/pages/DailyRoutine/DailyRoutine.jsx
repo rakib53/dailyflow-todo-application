@@ -11,6 +11,7 @@ import { addInputValue } from "../../features/addInputSlice/addInputSlice";
 import { openModal } from "../../features/openModalSlice/openModalSlice";
 import { useGetTaskQuery } from "../../features/tasksSlice/tasksApi";
 import styles from "./DailyRoutine.module.css";
+import YoutubePlayer from "./youtubeVideo";
 
 const DailyRoutine = () => {
   // getting the userInfomation
@@ -37,12 +38,12 @@ const DailyRoutine = () => {
   };
 
   // Separate objects based on their status
-  const todoTasks = userTasks?.tasks?.filter((task) => task.status === "todo");
+  const todoTasks = userTasks?.tasks?.filter((task) => task?.status === "todo");
   const ongoingTasks = userTasks?.tasks?.filter(
-    (task) => task.status === "ongoing"
+    (task) => task?.status === "ongoing"
   );
   const completedTasks = userTasks?.tasks?.filter(
-    (task) => task.status === "completed"
+    (task) => task?.status === "completed"
   );
 
   let content = null;
