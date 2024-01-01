@@ -1,0 +1,37 @@
+/* src/components/CircleProgressBar.css */
+.circle-progress-container {
+    position: relative;
+  }
+  
+  .circle-progress {
+    transform: rotate(-90deg);
+  }
+  
+  .circle-progress-background {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 5;
+  }
+  
+  .circle-progress-bar {
+    fill: none;
+    stroke: #4caf50; /* Change color as needed */
+    stroke-width: 5;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease-in-out;
+    transform-origin: center center;
+  }
+  
+  .circle-progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .circle-progress-text span {
+    font-size: 16px; /* Adjust font size as needed */
+    color: #000; /* Change color as needed */
+  }
+  
