@@ -4,6 +4,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const UserRouter = require("./routes/user.router");
 const TaskRouter = require("./routes/dailyRoutine.router");
+const googleLoginRoute = require("./routes/googleLogin.router");
 
 // Middlewares
 app.use(express.json());
@@ -13,8 +14,9 @@ app.use(cookieParser());
 // User API
 
 app.use("/api", UserRouter);
+app.use("/api", googleLoginRoute);
 
-// // // Tasks Api
+// Tasks Api
 app.use("/api", TaskRouter);
 
 // Error Handling

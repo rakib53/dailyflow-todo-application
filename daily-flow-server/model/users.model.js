@@ -7,18 +7,14 @@ const User = mongoose.Schema({
   password: String,
   date: String,
   role: String,
-  address: String,
   city: String,
   state: String,
   country: String,
   zipCode: String,
   avatar: String,
   accountCompeletation: Number,
-  contactNumber: String,
   location: String,
   gender: Array,
-  employeeType: String,
-  language: String,
 });
 
 module.exports = mongoose.model("User", User);
