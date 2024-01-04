@@ -7,7 +7,10 @@ import FacebookIcon from "../../assets/images/Icons/facebook.svg";
 import GoogleIcon from "../../assets/images/Icons/goole.svg";
 import LOGO from "../../assets/images/logo.svg";
 import SignInImage from "../../assets/images/signinimage.svg";
-import { useSignInMutation } from "../../features/auth/authApi";
+import {
+  useLoginWithGoogleMutation,
+  useSignInMutation,
+} from "../../features/auth/authApi";
 import { getUserInfo, setToken } from "../../features/auth/authSlice";
 import style from "../SignUp/Signup.module.css";
 
@@ -32,6 +35,10 @@ const SignIn = () => {
     signIn,
     { data: signInResponse, isLoading, isError, isSuccess, error },
   ] = useSignInMutation();
+  const [
+    googleLogin,
+    { data: googleLoginUserData, isLoading: googleLoginLoading },
+  ] = useLoginWithGoogleMutation();
 
   // Send data to server
   const handleSubmitDataa = (event) => {
@@ -42,6 +49,28 @@ const SignIn = () => {
       IsRemember,
     };
     signIn(loginFormData);
+  };
+
+  const handleGoogleLogin = async () => {
+    var SCOPES =
+      "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
+    const client = window.google.accounts.oauth2.initCodeClient({
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      scope: SCOPES,
+      ux_mode: "popup",
+      callback: async (response) => {
+        try {
+          if (response?.code) {
+            googleLogin({ code: response.code });
+          } else {
+            return;
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    });
+    client.requestCode();
   };
 
   // sate managment after getting the user data of error
@@ -160,9 +189,19 @@ const SignIn = () => {
           </div>
 
           <div className={style.socilSignIn}>
-            <button className="social">
-              <img src={GoogleIcon} alt="" />
-              <span>Signin with google</span>
+            <button
+              className="social"
+              onClick={handleGoogleLogin}
+              disabled={googleLoginLoading}
+            >
+              {googleLoginLoading ? (
+                <span>Loading...</span>
+              ) : (
+                <>
+                  <img src={GoogleIcon} alt="" />
+                  <span>Signin with google</span>
+                </>
+              )}
             </button>
 
             <button className="social">

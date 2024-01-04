@@ -11,7 +11,6 @@ import { addInputValue } from "../../features/addInputSlice/addInputSlice";
 import { openModal } from "../../features/openModalSlice/openModalSlice";
 import { useGetTaskQuery } from "../../features/tasksSlice/tasksApi";
 import styles from "./DailyRoutine.module.css";
-import YoutubePlayer from "./youtubeVideo";
 
 const DailyRoutine = () => {
   // getting the userInfomation
