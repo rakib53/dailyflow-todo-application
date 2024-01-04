@@ -176,8 +176,10 @@ const SignIn = () => {
             </div>
 
             <div className={style.getStartedBtnWrapper}>
-              <button type="submit" className="primaryBtn">
-                Sign In
+              <button type="submit" className="primaryBtn" disabled={isLoading}>
+                {
+                  isLoading ? "Loading...": "Sign In"
+                }
               </button>
             </div>
           </form>

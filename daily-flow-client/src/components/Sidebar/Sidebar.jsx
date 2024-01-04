@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LOGO from "../../assets/icons/logo.png";
 import XClose from "../../assets/icons/x-close.svg";
 import styles from "./Sidebar.module.css";
+import CircleProgressBar from "./Progressbar";
 
 const Sidebar = () => {
   // Showing the upgrade account popup state
@@ -138,9 +139,8 @@ const Sidebar = () => {
               src={XClose}
               alt=""
             />
-            <div className={styles.circle}>
-              <p className={styles.remainDays}>50%</p>
-            </div>
+
+            <CircleProgressBar percentage={50}></CircleProgressBar>
 
             <div>
               <h5 className={styles.daysLeft}>15 days left</h5>

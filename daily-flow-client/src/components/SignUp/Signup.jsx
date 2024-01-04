@@ -189,8 +189,10 @@ const Signup = () => {
               </div>
 
               <div className={style.getStartedBtnWrapper}>
-                <button type="submit" className="primaryBtn">
-                  Create account
+                <button type="submit" className="primaryBtn" disabled={isLoading}>
+                  {
+                    isLoading ? "Loading..." : "Create account"
+                  }
                 </button>
               </div>
             </form>
