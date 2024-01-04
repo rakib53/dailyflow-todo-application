@@ -339,6 +339,10 @@ body {
   opacity: 0;
 }
 
+.custom-checkbox:checked + label:after {
+  opacity: 1;
+}
+
 /* Secondary custom checkbox */
 
 .secondary-custom-checkbox {
