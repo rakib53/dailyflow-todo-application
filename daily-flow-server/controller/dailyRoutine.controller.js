@@ -14,6 +14,8 @@ const addTask = async (req, res, next) => {
       new Date().toDateString().split(" ")[3]
     }`;
 
+    console.log(userId, name, status, tasks, time);
+
     if (userId) {
       // User finding from the database
       const isUser = await User.findOne({ _id: userId });

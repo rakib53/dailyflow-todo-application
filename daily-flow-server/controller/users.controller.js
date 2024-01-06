@@ -2,37 +2,12 @@ const User = require("../model/users.model");
 const jwt = require("jsonwebtoken");
 
 // sigining json web token
-const signJsonWebToken = (req, res, next) => {
-  const userName = req?.body?.userName;
-  const email = req?.body?.email;
-  const password = req?.body?.password;
-  const IsRemember = req?.body?.IsRemember;
-  const user = {
-    userName,
-    email,
-    password,
-    IsRemember,
-  };
+const signJsonWebToken = (user, tokenValidationTime) => {
+  const siginInToken = jwt.sign(user, process.env.JWT_SECRET, {
+    expiresIn: tokenValidationTime ? tokenValidationTime : "1h",
+  });
 
-  let isRememberValue;
-  if (IsRemember) {
-    isRememberValue = "30d";
-  }
-  const siginInToken = jwt.sign(
-    {
-      data: user,
-    },
-    process.env.JWT_SECRET,
-    { expiresIn: isRememberValue ? isRememberValue : "1h" }
-  );
-
-  if (siginInToken.length > 0) {
-    req.token = siginInToken;
-    req.userInfo = user;
-    next();
-  } else {
-    res.status(401).json({ message: "Authentication Failed" });
-  }
+  return siginInToken;
 };
 
 // verifying json web token
@@ -44,7 +19,7 @@ const verifyJsonWebToken = (req, res, next) => {
         if (err) {
           return res.status(401).send({ message: "UnAuthorized access" });
         }
-        req.decoded = decode.data;
+        req.decoded = decode;
         next();
       });
     } else {
@@ -119,10 +94,7 @@ const registration = async (req, res, next) => {
 // Login  User
 const loginUser = async (req, res, next) => {
   try {
-    // Token from the JWT
-    const token = req?.token;
-    // User form information
-    const { email, password: userPass } = req?.userInfo;
+    const { email, password: userPass, isRemember } = req.body;
     // Define your search criteria
     const query = { email: email };
     // Checkng if the user already exist
@@ -160,6 +132,16 @@ const loginUser = async (req, res, next) => {
         avatar,
       };
 
+      const token = signJsonWebToken(
+        {
+          _id,
+          userName,
+          email,
+          date,
+        },
+        isRemember && "30d"
+      );
+
       // sending the response to the fronted
       if (isUser?._id) {
         if (password !== userPass) {
@@ -174,9 +156,6 @@ const loginUser = async (req, res, next) => {
             message: "User logged in successfully",
           });
         }
-      } else {
-        res.status(404).json({ status: 404, message: "User not found!" });
-        return;
       }
     } else {
       res.status(404).json({ status: 404, message: "User not found!" });

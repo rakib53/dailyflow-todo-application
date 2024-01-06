@@ -1,6 +1,7 @@
 const { OAuth2Client } = require("google-auth-library");
 const { google } = require("googleapis");
 const User = require("../model/users.model");
+const { signJsonWebToken } = require("./users.controller");
 
 // Generating token for userInformation
 async function getRefreshToken(token) {
@@ -58,6 +59,7 @@ const googleUserData = async (res, userData, auth) => {
     const query = { email: email };
     // Checkng if the user already exist
     const isUser = await User.findOne(query);
+
     if (!isUser) {
       // Creating the user object for database
       const newUser = await new User({
@@ -69,33 +71,39 @@ const googleUserData = async (res, userData, auth) => {
       });
       // Storing the user information to database and gives front end response
       const savedUserData = await newUser.save();
-      console.log(savedUserData);
+      const user = {
+        userName: savedUserData.userName,
+        email: savedUserData.email,
+        date: savedUserData.date,
+        role: savedUserData.role,
+        _id: savedUserData?._id,
+      };
+
+      // Signing json web token
+      const siginInToken = signJsonWebToken(user, "7d");
 
       if (savedUserData?._id) {
         res.status(201).json({
-          token: token,
-          user: {
-            userName: savedUserData.userName,
-            email: savedUserData.email,
-            date: savedUserData.date,
-            role: savedUserData.role,
-            _id: savedUserData?._id,
-          },
+          token: siginInToken,
+          user,
           message: "User created successfully",
         });
       } else {
         res.status(500).json({ message: "Failed to create user" });
       }
     } else {
+      const user = {
+        userName: isUser.userName,
+        email: isUser.email,
+        date: isUser.date,
+        role: isUser.role,
+        _id: isUser?._id,
+      };
+      // Signing json web token
+      const siginInToken = signJsonWebToken(user, "7d");
       res.status(201).json({
-        token: token,
-        user: {
-          userName: isUser.userName,
-          email: isUser.email,
-          date: isUser.date,
-          role: isUser.role,
-          _id: isUser?._id,
-        },
+        token: siginInToken,
+        user,
         message: "User Logged in successfully",
       });
     }
