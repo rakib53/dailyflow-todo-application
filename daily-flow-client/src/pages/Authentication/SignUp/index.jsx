@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import Confirmation from "../../assets/images/Confirmation.svg";
-import Password_Eye_Off from "../../assets/images/Icons/eye-off.svg";
-import Password_Eye from "../../assets/images/Icons/eye.svg";
-import FacebookIcon from "../../assets/images/Icons/facebook.svg";
-import GoogleIcon from "../../assets/images/Icons/goole.svg";
-import LOGO from "../../assets/images/logo.svg";
-import SignUpImage from "../../assets/images/signupImage.svg";
-import { useRegistrationMutation } from "../../features/auth/authApi";
-import { getUserInfo, setToken } from "../../features/auth/authSlice";
-import style from "./Signup.module.css";
+import Confirmation from "@assets/images/Confirmation.svg";
+import Password_Eye_Off from "@assets/images/Icons/eye-off.svg";
+import Password_Eye from "@assets/images/Icons/eye.svg";
+import FacebookIcon from "@assets/images/Icons/facebook.svg";
+import GoogleIcon from "@assets/images/Icons/goole.svg";
+import LOGO from "@assets/images/logo.svg";
+import SignUpImage from "@assets/images/signupImage.svg";
+import { useRegistrationMutation } from "@features/auth/authApi";
+import { getUserInfo, setToken } from "@features/auth/authSlice";
+import style from "../Authentication.module.css";
+import SigninWithGoogle from "../SigninWithGoogle";
 
 const Signup = () => {
   const [isHide, setIsHide] = useState(false);
@@ -189,10 +190,12 @@ const Signup = () => {
               </div>
 
               <div className={style.getStartedBtnWrapper}>
-                <button type="submit" className="primaryBtn" disabled={isLoading}>
-                  {
-                    isLoading ? "Loading..." : "Create account"
-                  }
+                <button
+                  type="submit"
+                  className="primaryBtn"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Loading..." : "Create account"}
                 </button>
               </div>
             </form>
@@ -204,12 +207,9 @@ const Signup = () => {
             </div>
 
             <div className={style.socilSignIn}>
-              <button className="social">
-                <img src={GoogleIcon} alt="" />
-                <span>Signin with google</span>
-              </button>
+              <SigninWithGoogle />
 
-              <button className="social">
+              <button className={style.social}>
                 <img src={FacebookIcon} alt="" />
                 <span>Signin with facebook</span>
               </button>

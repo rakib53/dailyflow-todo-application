@@ -22,7 +22,7 @@ const Navbar = () => {
   const expandUserMenuRef = useRef(null);
   const navigate = useNavigate();
   // getting the userInfomation
-  const { user } = useSelector((state) => state.authSlice);
+  const { user, token } = useSelector((state) => state.authSlice);
   const dispatch = useDispatch();
   const months = [
     "January",

@@ -1,0 +1,365 @@
+.signUpPageWrapper {
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+}
+.singUpLeftImageWrapper {
+  width: 684px;
+  height: 976px;
+  flex-shrink: 0;
+}
+
+.singUpLeftImage {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.signUpContent {
+  max-width: 360px;
+  width: 100%;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.signUpHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Logo {
+  margin-bottom: 100px;
+}
+
+.createAnAccountText {
+  color: var(--gray-900, #2b2f38);
+  text-align: center;
+  font-size: 30px;
+  line-height: 38px;
+  margin-bottom: 12px;
+  font-family: "roobertSemiBold", sans-serif;
+}
+
+.freeTrailText {
+  color: var(--gray-600, #5d6679);
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "roobertReg", sans-serif;
+}
+
+.getStartedBtnWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.getStartedBtnWrappers {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputFiled {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  align-self: stretch;
+}
+
+label {
+  color: var(--gray-900, #2b2f38);
+  font-size: 14px;
+  line-height: 20px;
+  font-family: "roobertMedium", sans-serif;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  line-height: 24px;
+  font-size: 16px;
+  gap: 8px;
+  outline: none;
+  align-self: stretch;
+  border-radius: 8px;
+  color: var(--gray-900, #2b2f38);
+  border: 1px solid var(--gray-300, #d0d5dd);
+  background-color: var(--base-white, #fff);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  font-family: "roobertReg", sans-serif;
+}
+
+.passwordFiled {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+}
+
+.password {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.password_Eye_Off {
+  position: absolute;
+  top: 17px;
+  right: 14px;
+  cursor: pointer;
+}
+
+.password_Eye {
+  position: absolute;
+  top: 17px;
+  right: 14px;
+  cursor: pointer;
+}
+
+.input:focus {
+  border-radius: 8px;
+  border: 1px solid var(--primary-200, #a6b3f9);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 0px 0px 4px #eceffe, 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.input::placeholder {
+  color: var(--gray-500, #667085);
+  font-family: "roobertReg", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.passwordMustBe8 {
+  opacity: 0;
+  color: var(--gray-600, #5d6679);
+  font-size: 14px;
+  font-family: "roobertReg", sans-serif;
+  line-height: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.passwordError {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.orWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0;
+}
+
+.leftLine {
+  width: 100%;
+  height: 1px;
+  background: var(--gray-200, #eaecf0);
+}
+
+.orText {
+  color: var(--gray-600, #475467);
+  text-align: center;
+  font-size: 14px;
+  font-family: "roobertMedium", sans-serif;
+  text-transform: uppercase;
+  line-height: 20px;
+}
+
+.rightLine {
+  width: 100%;
+  height: 1px;
+  background: var(--gray-200, #eaecf0);
+}
+
+.socilSignIn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alreadyHaveAnAcc {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+  color: var(--gray-900, #2b2f38);
+  font-size: 14px;
+  font-family: "roobertReg", sans-serif;
+  line-height: 20px;
+}
+
+.alreadyHaveAnAcc .Link {
+  color: var(--primary-700, #2b40ab);
+  font-size: 14px;
+  font-family: "roobertSemiBold", sans-serif;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+.ConfirmationContent {
+  max-width: 360px;
+  width: 100%;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.5s ease-in-out;
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.confirmationLogo {
+  width: 165px;
+  height: 165px;
+  flex-shrink: 0;
+  margin-bottom: 44px;
+  margin-top: 40px;
+}
+
+.accountSuccesText {
+  color: var(--gray-900, #2b2f38);
+  text-align: center;
+  font-size: 30px;
+  font-family: "roobertSemiBold", sans-serif;
+  font-weight: 600;
+  line-height: 38px;
+}
+
+.letsTrackAcc {
+  color: var(--gray-600, #5d6679);
+  text-align: center;
+  font-size: 16px;
+  font-family: "roobertReg", sans-serif;
+  line-height: 24px;
+  margin-top: 5px;
+  margin-bottom: 32px;
+}
+
+.errorMessage {
+  color: var(--error-500, #f04438);
+  font-size: 14px;
+  font-family: "roobertReg", sans-serif;
+  line-height: 20px;
+}
+
+.errorInputBorder {
+  border: 1px solid var(--error-300, #f5827a) !important;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.rememberAndForgetPassWrapper {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rememberPassword {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.forgetPassText {
+  color: var(--primary-700, #2b40ab);
+  font-size: 14px;
+  font-family: "roobertSemiBold", sans-serif;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1240px) {
+  .singUpLeftImageWrapper {
+    width: 584px;
+    height: auto;
+    flex-shrink: 0;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .signUpPageWrapper {
+    width: 100%;
+    min-height: 100vh;
+    padding: 16px;
+  }
+  .singUpLeftImageWrapper {
+    display: none;
+  }
+  .formWrapper {
+    width: 100%;
+  }
+
+  .signUpContent {
+    max-width: 100%;
+  }
+
+  .ConfirmationContent {
+    max-width: 100%;
+  }
+
+  .confirmationLogo {
+    margin-top: 0px;
+  }
+
+  .accountSuccesText {
+    font-size: 24px;
+  }
+}
+
+.social {
+  display: flex;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--gray-100, #d0d3d9);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.social:hover {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid var(--gray-300, #989fad);
+  background: var(--gray-50, #f0f1f3);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.social span {
+  color: var(--gray-900, #2b2f38);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  line-height: 24px;
+}
